@@ -1,0 +1,88 @@
+<h1 id="cs374-database-project-proposal">CS374 Database Project Proposal</h1>
+<p>Project Title: <strong>Formula One Logistical Database (F1LDB)</strong></p>
+<p>Team Name: <strong>Data Racers</strong></p>
+<p>Short Name: <strong>DR</strong></p>
+<p>Team Members: <strong>Stella Lee, Kane Dacier, Gavin Barro, Austin Earl</strong></p>
+<h1 id="introduction">Introduction</h1>
+<p><strong>Formula One (F1)</strong> is the highest level of motorsport, featuring open-wheel, single seater cars that race at high speeds on circuits across the world. Governed by the Fédération Internationale de l’Automobile (FIA), F1 is renowned for its combination of cutting-edge engineering, driver skills, and team strategy. Teams design their cars with strict regulations, focusing on aerodynamics, tire management, and power units. Races, known as Grand Prixs, take place on diverse tracks ranging from purpose built courses to street circuits. Drivers accumulate points throughout the season, with championships awarded for both drivers and teams based on overall performance.</p>
+<p>We propose to develop the “Formula 1 Logistical Database (F1LDB)” which is the central location for Race Organizers, Team Managers, and Crew Members to keep track of the large amounts of equipment that will trot the globe during the Formula 1 season. F1LDB will allow Race Organizers to add Formula 1 races to the calendar and schedule the shipping of the equipment between races. Team Managers can manage the status of their equipment as it is loaded and unloaded and select how it will be shipped. Race Crew Members manage the equipment and supplies owned by the league (broadcasting equipment etc) and are able to log on and keep track of the equipment.</p>
+<h1 id="primary-system-entities">Primary System Entities</h1>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">SYSTEM ENTITY</th>
+<th style="text-align: left;">ATTRIBUTES</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Race Event</td>
+<td style="text-align: left;">Race Name, Date of Race, Teams Involved name, description, advertisement, size, space and tools requirements, etc.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kits</td>
+<td style="text-align: left;">Team of Kit, Size, Number of Containers(it takes up), description</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Containers</td>
+<td style="text-align: left;">Team Name, Critical Container, Method of shipment, Current Location, Destination</td>
+</tr>
+</tbody>
+</table>
+<p>The F1LDB simplifies tracking of equipment by having a cohesive database that displays location and shipping information. With this, teams can efficiently determine which equipment needs to be shipped for current/future races. Historical data on previous races can also be incorporated for reference for the users of the system which can help improve planning for future races.</p>
+<p>Race Events are individual F1 Races. Each season features about 20 races occurring every week or two. The Team Kits are the equipment owned by each individual team. They have the tires, mechanics equipment, uniforms etc. Our system does not care about the contents of each kit, that is for each team to manage at their own level. Containers are the equipment owned by the F1 League and contain the necessary equipment to run each race.</p>
+<h1 id="primary-system-users">Primary System Users</h1>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">USER GROUP</th>
+<th style="text-align: left;">ACTIVITIES &amp; PERMISSIONS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Race Event Organizer</td>
+<td style="text-align: left;">Race Event Organizers are in charge of an individual race. They create races as well as schedule the shipments to and from the race location</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Team Manager</td>
+<td style="text-align: left;">Team managers can manage the equipment(kit) of their individual team. They input the system when the equipment is loaded and unloaded, and when containers are shipped to their destination</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Race Crew Members</td>
+<td style="text-align: left;">Race crew members manage the equipment owned by the race organizer. They keep the status of the equipment up to date in the database.</td>
+</tr>
+</tbody>
+</table>
+<p>Race Event Organizers are the highest level of authority in the database. Their primary role is to schedule races in the system, as well as the shipping of equipment to and from the race location. Team Managers are the point of contact for each team. They tell the database when their team’s equipment is loaded and unloaded from shipping. They also select which shipment to use to ship their team kit. Race Crew Members are in charge of the equipment owned by the F1 League, such as broadcasting equipment, officiating equipment, etc. They tell the database when the equipment is loaded and unloaded.</p>
+<h1 id="system-functionality">System Functionality</h1>
+<h2 id="kits-and-containers">Kits and Containers</h2>
+<ul>
+<li>The kits are maintained by the teams and containers are maintained by the crew.</li>
+<li>The kits contain the car, replacement car parts, communication equipment, and other miscellaneous equipment.</li>
+<li>The containers contain the kits and the other equipment owned by the Formula One league.</li>
+<li>The containers are marked as critical and non-critical, the critical equipment will arrive before the non-critical equipment will.</li>
+</ul>
+<h2 id="crew-members-and-team-managers-separate">Crew Members and Team Managers (separate)</h2>
+<ul>
+<li>Crew Members and Team Managers load and unload the equipment from shipping.</li>
+<li>Crew Members select the shipping method based on the location of the next event.</li>
+<li>Crew Members can add new shipping containers to the system.</li>
+<li>Inbound Crew members unload containers, and packup crew members load containers</li>
+<li>Crew Members assign a Race Event an instance of Non-Critical Equipment</li>
+<li>Race Organizers schedule Races and select the current race in the system.</li>
+<li>Race Crew Members schedule planes, trucks, and ships for shipping.</li>
+</ul>
+<h1 id="about-the-team">About the Team</h1>
+<p><strong>Kane Dacier</strong> is a Junior Computer Science student at James Madison University. He is originally from Williamsburg, VA and loves to spend his free time on long runs around Harrisonburg and watching football, particularly the Dukes and the Pittsburgh Steelers. He also loves to hike and camp, frequently combining the two activities into backpacking trips around the Blue Ridge Mountains.</p>
+<p><strong>Gavin Barro</strong> is a Senior Computer Science major and Data Analytics minor at James Madison University. He is from Clinton, NJ and enjoys running track and spending free time with friends, whether that is watching various sports indoors or hanging out outdoors. He will be attending Virginia Tech in the fall of 2025 for graduate school.</p>
+<p><strong>Austin Earl</strong> is a Senior Computer Science Major and Data Analytics minor at James Madison University. He is originally from Annapolis Maryland. He enjoys spending his free time playing video games, hanging out with friends, playing golf, and going to breweries. He will be graduating in December of 2025 and hopefully be working after he graduates.</p>
+<p><strong>Stella Lee</strong> is a Senior Computer Science Student at James Madison University. She is from Fairfax City, in Northern Virginia. She enjoys the data/ML/research side of computer science and would like to pursue an interdisciplinary education that combines CS and sciences. She spends time with her friends and her cat as much as possible. Otherwise, she is found drawing/journaling or reading books outside in her spare time.</p>

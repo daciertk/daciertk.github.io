@@ -6,8 +6,11 @@
     color:#333;
     }
 
-   
-    .side{
+    .main img{
+      width: 40%;
+      height: auto;
+    }
+    .main side{
         display: inline-block;
         vertical-align: top;
         text-align: center;
@@ -158,6 +161,11 @@
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
+}
+
+.content-frame{
+  width: 80vh;
+  height: 60vh;
 }
 
 .active, .dot:hover {

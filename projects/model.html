@@ -1,0 +1,144 @@
+<h1 id="document-database-model">Document Database Model</h1>
+<p>Project Title: <strong>F1DB</strong></p>
+<p>Team Name: <strong>dr</strong></p>
+<h2 id="relational-mapping">Relational Mapping</h2>
+<p>The following <strong>4 collections</strong> correspond to the <strong>12 tables</strong> found in <a href="schema.png">schema.png</a>.</p>
+<ul>
+<li>Race Event
+<ul>
+<li>raceid</li>
+<li>location</li>
+<li>date</li>
+</ul></li>
+<li>Team
+<ul>
+<li>team</li>
+<li>raceevent</li>
+</ul></li>
+<li>Person
+<ul>
+<li>room</li>
+<li>room_feature</li>
+<li>feature</li>
+</ul></li>
+<li>Kit
+<ul>
+<li>container_id</li>
+</ul></li>
+<li>Shipment
+<ul>
+<li>shipment_id</li>
+<li>current_location</li>
+<li>destination</li>
+<li>method</li>
+<li>created_by</li>
+<li>status</li>
+</ul></li>
+<li>Container
+<ul>
+<li>ConID</li>
+<li>ShipmentID</li>
+<li>CriticalContainer</li>
+<li>Status</li>
+<li>UpdatedBy</li>
+</ul></li>
+<li>Kit
+<ul>
+<li>KitID</li>
+<li>OwnerID</li>
+<li>TypeOfKit</li>
+<li>TeamID</li>
+<li>TotalWeight</li>
+<li>KitSize</li>
+</ul></li>
+<li>KitContents
+<ul>
+<li>KitID</li>
+<li>PartID</li>
+<li>PartName</li>
+<li>PartDesc</li>
+<li>PartWeight</li>
+</ul></li>
+</ul>
+<h2 id="the-race-event-collection">The Race Event Collection</h2>
+<p>The location, date, and creator are stored in the Race Event Collection. Since race events are usually created in advance, the location and date are predetermined and don’t often change (except in rare circumstances). The Creator of the race does not change. A link (dbms specific) is stored to the person who created the event (race event organizer). This is linked with our Person collection.</p>
+<pre><code>{
+    &#39;raceid&#39;: &#39;322&#39;,
+    &#39;location&#39;: &#39;Canada&#39;,
+    &#39;official_name&#39;: &#39;2024 Canadian Grand Prix&#39;
+    &#39;date&#39;: &#39;03-24-2024&#39;,
+    &#39;creator&#39;: {
+        &#39;id&#39;: &#39;10&#39;,              # DBMS-specific linking
+        &#39;name&#39;: &#39;Frances Baguette&#39;,
+    }
+}</code></pre>
+<h2 id="the-shipment-collection">The Shipment Collection</h2>
+<p>The Shipment Collection stores information about the transportation of containers for a race event. Each shipment includes its current location, destination, and method of transport, which may vary depending on logistical needs. Shipments are linked to the race they support and are created by an organizer, with a (DBMS specific) link to the Person Collection. Containers within the shipment, including critical status and their contents, are nested for easy tracking and management.</p>
+<pre><code>{
+    &quot;shipmentid&quot;: &quot;5002&quot;,
+    &quot;raceid&quot;: &quot;1100&quot;,
+    &quot;currentlocation&quot;: &quot;Saudian Arabian Grand Prix&quot;,
+    &quot;destination&quot;: &quot;Australian Grand Prix&quot;,
+    &quot;method&quot;: &quot;Submarine&quot;,
+    &quot;createdby&quot;: {
+        &quot;id&quot;: &quot;10&quot;,  # DBMS specific linking
+        &quot;name&quot;: &quot;Dragan Scholl&quot;
+    },
+    &quot;status&quot;: &quot;Arrived&quot;,
+    &quot;containers&quot;: [
+        {
+            &quot;conid&quot;: &quot;6020&quot;,
+            &quot;critical&quot;: True,
+            &quot;status&quot;: &quot;Submarine&quot;,
+            &quot;updatedby&quot;: {
+                &quot;id&quot;: &quot;14&quot;,  # DBMS specific linking
+                &quot;name&quot;: &quot;Chloë Hemma van Allemanië&quot;
+            }
+        }
+    ]
+}
+</code></pre>
+<h2 id="the-container-collection">The Container collection</h2>
+<p>The container collection contains information about the amount of kits in each container. These containers contain a id, the id of the shipment that the container is on, the status of the container, if it is loaded or not, and who it was updated by. The ContainerContents table connectes the Container to the specific kits that are in the container.</p>
+<pre><code>{
+    &quot;ConID&quot;: &quot;6000&quot;,
+    &quot;ShipmentID&quot;: &quot;5000&quot;,
+    &quot;CriticalContainer&quot;: &quot;True&quot;,
+    &quot;Status&quot;: &quot;Arrived&quot;,
+    &quot;method&quot;: &quot;In-Transit&quot;,
+    &quot;UpdatedBy&quot;: 0,
+    &quot;ContainerContents&quot;: 
+    [
+        &quot;ContainerContents&quot;: {
+            &quot;ConID&quot;: &quot;6000&quot;,
+            &quot;KitID&quot;: &quot;7000&quot;
+        }
+    ]
+}</code></pre>
+<h2 id="kit-collection">Kit Collection</h2>
+<p>The kit collection contains information about the kits stored in the container. These kits contain an ID, the ID of the person who owns it, the ID of a team who owns the kit, the total weight of the parts in the kit, and the size of the kit based on the weight.</p>
+<pre><code>{
+    &quot;KitID&quot;: &quot;7000&quot;
+    &quot;OwnerID&quot;: &quot;2&quot;,
+    &quot;TeamID&quot;: &quot;1&quot;,
+    &quot;TotalWeight&quot;: &quot;71&quot;,
+    &quot;KitSize&quot;: &quot;large&quot;, 
+    [
+        &quot;KitContents&quot;: {
+        &quot;KitID&quot;: &quot;7000&quot;,
+        &quot;PartID&quot;: &quot;10000&quot;,
+        &quot;PartName&quot;: &quot;Transmission cover&quot;,
+        &quot;PartDesc&quot;: &quot;Protects transmission componets&quot;,
+        &quot;PartWeight&quot;: &quot;71&quot;
+        }
+    ]
+}</code></pre>
+<h2 id="kitcontents">KitContents</h2>
+<p>The KitContents contains information about the specific part being stored in the Kit. The table contains a ID for the kit it is being stored in, the ID of the part in the kit, the name of the part, a short descripition, and the weight of the part(s).</p>
+<pre><code>{
+    &quot;KitID&quot;: &quot;7000&quot;,
+    &quot;PartID&quot;: &quot;1000&quot;,
+    &quot;PartName&quot;: &quot;Transmission Cover&quot;,
+    &quot;PartDesc&quot;: &quot;Protects transmission components&quot;,
+    &quot;PartWeight&quot;: &quot;71&quot;
+}</code></pre>
