@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Burger Dash Game</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+      <header>
+        <nav>
+          <div class ="topnav">
+            <p>Kane Dacier</p>
+            <a href ="../index.html">Home</a>
+            <a href ="../about.html">About Me</a>
+            <a href ="../projects.html">Projects</a>
+            <a href ="../blog.html">Blog</a>
+            <a href="docs/DacierKaneResume.pdf">Resume</a>
+          </div>
+        </nav>
+      </header>
+      <div class="main">
+        <h1>Burger Dash Game</h1>
+        <p>Burger Dash is a two player game written in TypeScript using the WebGL Library. Players compete to
+            race around the map and build their burger first. 
+        </p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/iDVJ06GYWsg?si=aVbgoHQQna67wW4M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <h2>Models and Animation</h2>
+        <p>Multiple game elements, such as the player, trees, and burger ingredients, were created in blender.
+            I exported them and used an external library to load them into webgl. The moving trees were also animated
+            in blender and the player moving animation was done using motion capture (so it's an animation of me walking
+            you're looking at!). 
+        </p>
+        <h3>Textures</h3>
+        <p>Every model in the game is textured. I used a variety of PNGs as the textures. In fact, texturing works
+            much simpler than it looks. The renderer transposes the coordinate of the model to a pixel on the reference image, 
+            and draws that image to the screen. Texturing also allowed me to reuse some of the models: I have one model for the burger patty,
+            tomato, and cheese and just changed the texture image and scaling.
+        </p>
+        <h3>Fog</h3>
+        <p>In the last step before drawing to the screen, I added one last transformation to the pixel color before
+            drawing to the screen. I added some shader code that increases the opacity of the pixels further away from 
+            the player, creating a foggy effect. It was pretty simple to implement and adds a lot to the atmosphere of the 
+            game area. 
+        </p>
+        <h3>Billboarding</h3>
+        <p>The small shrubs are created using a combination of multiple effects. It's first textured using a reference image of a shrub. 
+            The image has a dark gray background, and I added a check that only draws the pixel if it is not a gray pixel. 
+            This makes the shrub see thru, allowing everything in the background to be seen through the shrub. Finally, I used a 
+            technique called "Billboarding", which rotates the shrub to face the player every frame. The rotation is noticable up fron,
+            but further away it makes the shrub look 3d. These tricks make a 2d image of a shrub look like a 3d model without adding a 
+            ton of computational complexity from another model.
+        </p>
+
+        <h3>Sky</h3>
+        <p>I created the sky using a "skybox". A skybox is a 3d cube rendered as a box around the camera with everything else 
+            in the environment rendered in front of it. It's textured using 6 images of a sky that combine to create a seamless
+            background from all angles.
+        </p>
+      </div>
