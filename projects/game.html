@@ -60,10 +60,14 @@
             but further away it makes the shrub look 3d. These tricks make a 2d image of a shrub look like a 3d model without adding a 
             ton of computational complexity from another model.
         </p>
+        <img src="shrubs.png" width=50% alt="Original image vs image in game">
+        <p>The source image of the shrub vs the image in the game. The shader writes the pixel from the image to the screen if the green channel is over a certain threshold</p>
 
         <h3>Sky</h3>
         <p>I created the sky using a "skybox". A skybox is a 3d cube rendered as a box around the camera with everything else 
             in the environment rendered in front of it. It's textured using 6 images of a sky that combine to create a seamless
             background from all angles.
         </p>
+        <img src="skybox.png" width =50%>
+        <p>These 6 PNGs combine to create the sky. Each image is a face of a cube, with the camera placed in the middle</p>
       </div>
