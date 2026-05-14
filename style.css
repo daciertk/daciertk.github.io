@@ -182,3 +182,25 @@
   from {opacity: .4}
   to {opacity: 1}
 }
+
+code, pre {
+  font-family: monospace;
+  background: #f4f4f4;
+  color: #1a1a1a;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+code {
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+pre code {
+  padding: 0;
+  background: none;
+}
